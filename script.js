@@ -10,7 +10,11 @@ Follow along, reading each set of instructions carefully to build
 out this gallery.
 
 */
+const gallery = document.querySelector('js-gallery');
 
+const galleryItems = gallery.querySelectorAll('js-gallery-item');
+
+console.log(galleryItems);
 
 
 /*
