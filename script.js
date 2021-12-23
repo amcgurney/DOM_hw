@@ -10,12 +10,6 @@ Follow along, reading each set of instructions carefully to build
 out this gallery.
 
 */
-const gallery = document.querySelector('js-gallery');
-
-const galleryItems = gallery.querySelectorAll('js-gallery-item');
-
-console.log(galleryItems);
-
 
 /*
 
@@ -25,10 +19,13 @@ variable. Then pull an array of the 'js-gallery-item' elements from
 your 'js-gallery'.
 
 Hint: you can call .querySelector on a node you've already retrieved from the DOM.
-
 */
 
+let gallery = document.querySelector('.js-gallery');
+let arr = document.querySelectorAll('.js-gallery-item');
 
+/*console.log(gallery.classList);
+/*console.log(arr);
 
 /*
 
@@ -48,6 +45,18 @@ To get the width, try .getBoundingClientRect() or .offsetWidth.
 
 */
 
+let slideCount = arr.length;
+let slideWidth = arr[0].getBoundingClientRect().width;
+
+
+/*let myWidths = [];
+arr.forEach(function (item) {
+  let getBound = item.getBoundingClientRect();
+  myWidths.push(getBound.width)
+})
+
+console.log(myWidths);
+console.log('hi this is here');
 
 
 /*
@@ -73,6 +82,9 @@ Create a function called transitionSlide that, for now, just
 
 
 
+
+
+
 /*
 
 Step 4:
@@ -88,6 +100,7 @@ Inside transitionSlide() we need to do two things:
     that it's equal to translateX( delta ), where delta is the width
     of a single slide times the value of currentSlide.
     - increment currentSlide
+
   (b) ELSE:
     - set the transform style property so that translateX() is 0
     - set currentSlide back to 1
@@ -95,3 +108,17 @@ Inside transitionSlide() we need to do two things:
 Hint: delta should always be a negative number
 
 */
+let currentSlide = 1;
+function transitionSlide(){
+  if (currentSlide < slideCount){
+          gallery.style.transform = `translateX(-${slideWidth*currentSlide}px`;
+          currentSlide++;  
+  } 
+  else {
+        gallery.style.transform = "translateX(0)";
+        currentSlide = 1;
+  }
+}
+
+const timer = setInterval(transitionSlide, 5000)
+
